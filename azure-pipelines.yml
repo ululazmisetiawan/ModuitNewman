@@ -18,7 +18,8 @@ steps:
 - script: |
     npm install
     npm run build
-  displayName: 'npm install and build'
+    npm install -g newman
+  displayName: 'npm install and build and install newman'
 
 - script: |
     newman run Moduit.postman_collection.json
