@@ -1,0 +1,231 @@
+{
+	"info": {
+		"_postman_id": "8c6c170f-e9ca-4985-bacd-e817d63e1414",
+		"name": "Moduit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20480381"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"     pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Response Details are Present\", function () {",
+							"     pm.response.to.have.jsonBody(\"name\");",
+							"     pm.response.to.have.jsonBody(\"job\");",
+							"     pm.response.to.have.jsonBody(\"id\");",
+							"     pm.response.to.have.jsonBody(\"createdAt\");",
+							"});",
+							"",
+							"pm.test(\"Name must morpheus\", function () {",
+							"     var jsonData = pm.response.json();",
+							"     pm.expect(jsonData.name).to.eql(\"morpheus\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"morpheus\",\n    \"job\": \"leader\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User From ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"     pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Response Details are Present\", function () {",
+							"     pm.response.to.have.jsonBody(\"data\");",
+							"     pm.response.to.have.jsonBody(\"data.id\");",
+							"     pm.response.to.have.jsonBody(\"data.email\");",
+							"     pm.response.to.have.jsonBody(\"data.first_name\");",
+							"     pm.response.to.have.jsonBody(\"data.last_name\");",
+							"     pm.response.to.have.jsonBody(\"data.avatar\");",
+							"     pm.response.to.have.jsonBody(\"support\");",
+							"     pm.response.to.have.jsonBody(\"support.url\");",
+							"     pm.response.to.have.jsonBody(\"support.text\");",
+							"});",
+							"",
+							"pm.test(\"First name must Janet\", function () {",
+							"     var jsonData = pm.response.json();",
+							"     pm.expect(jsonData.data.first_name).to.eql(\"Janet\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Ulul\",\n    \"job\": \"leader\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"     pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"Response Details are Present\", function () {",
+							"     pm.response.to.have.jsonBody(\"name\");",
+							"     pm.response.to.have.jsonBody(\"job\");",
+							"     pm.response.to.have.jsonBody(\"updatedAt\");",
+							"});",
+							"",
+							"pm.test(\"Name must Moduit\", function () {",
+							"     var jsonData = pm.response.json();",
+							"     pm.expect(jsonData.name).to.eql(\"Moduit\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Moduit\",\n    \"job\": \"zion resident\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://reqres.in/api/users/2",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
